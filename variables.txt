@@ -1,0 +1,12 @@
+display_name=EdgeNode1
+value=UplinkProfile1
+ip_pool_id=IpPool123
+form_factor=large
+cli_username=admin
+root_password=supersecret
+cli_password=adminpass
+hostname=edgenode1.local
+search_domains=domain.local
+ntp_servers=ntp1.local,ntp2.local
+dns_servers=8.8.8.8,8.8.4.4
+ip_addresses=192.168.0.10
