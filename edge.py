@@ -9,11 +9,15 @@ def leggi_file(nome_file):
                chiave, valore = linea.split('=')
                if chiave.startswith('*'):
                    chiave = chiave[1:]  # Rimuovi il carattere '*'
-                   variabili[chiave] = valore
-                   print("ARRAY", variabili[chiave])
-               elif not chiave.startswith('*'):
                    variabili[chiave] = valore.split(',')
                    print("LISTA", variabili[chiave])
+                   #variabili[chiave] = valore
+                   #print("ARRAY", variabili[chiave])
+               elif not chiave.startswith('*'):
+                   variabili[chiave] = valore
+                   print("ARRAY", variabili[chiave])
+                   #variabili[chiave] = valore.split(',')
+                   #print("LISTA", variabili[chiave])
     return variabili
 
 def crea_json(variabili):
@@ -28,7 +32,7 @@ def crea_json(variabili):
                             "host_switch_profile_ids": [
                                 {
                                     "key": "UplinkHostSwitchProfile",
-                                    "value": variabili.get('value', '')
+                                    "value": variabili.get('UplinkHostSwitchProfile', '')
                                 }
                             ],
                             "pnics": [
@@ -77,10 +81,10 @@ def crea_json(variabili):
                                 }
                             ],
                             "default_gateway_addresses": [
-                                "10.111.0.1"
+                                variabili.get('gateway', '')
                             ],
                             "data_network_ids": [
-                                "dvportgroup-6938"
+                                variabili.get('data_network_ids', '')
                             ],
                             "reservation_info": {
                                 "memory_reservation": {
@@ -114,9 +118,9 @@ def crea_json(variabili):
                     "enable_upt_mode" : False
                     },
                     "resource_type": "EdgeNode",
-                    "ip_addresses":
+                    "ip_addresses": [
                         variabili.get('ip_addresses', '')
-                    
+                    ]
                 }
     }
 

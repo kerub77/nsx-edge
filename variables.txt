@@ -1,12 +1,39 @@
-display_name=EdgeNode1
-value=UplinkProfile1
-ip_pool_id=IpPool123
-form_factor=large
+# Variabili di configurazione per lo script
+display_name=EdgeNode1-test
+# uplink profile ID - ricavato da NSX UI
+UplinkHostSwitchProfile=0ddd5837-35e3-4a8f-8c6a-c5122c339663
+
+# Configurazioni IP e rete
+# ip pool ID GET https://10.111.15.139/policy/api/v1/infra/ip-pools/pool-tep-edge-01 "unique_id":
+ip_pool_id=6068e522-d2ed-4693-8c18-72e09a754d92
+
+# Overlay Transport Zone IDs - ricavato da NSX UI
+transport_zone_id=1b3a2f36-bfd1-443e-a0f6-4de01abc963e
+
+# vcenter ID
+# https://10.111.15.139/policy/api/v1/fabric/compute-managers "id"
+# oppure ricavato da UI fabric Compute Managers
+vc_id=4ddee844-7a10-4596-9d1d-753f4967e412
+# vCenter cluster ID (Get-Cluster -Name NomeCluster).ExtensionData.moref.value
+compute_id=domain-c7
+# (Get-Datastore -Name "NomeDatastore" -Server "vCenter_Hostname").ExtensionData.MoRef.Value
+storage_id=datastore-15
+# Se standard network, prenderlo dalla URL, altrimenti: (Get-VDPortgroup -Name "nsx").key
+management_network_id=network-18
+
+# Configurazioni di rete
+ip_addresses=10.111.15.151
+prefix_length=16
+gateway=10.111.0.1
+# (Get-VDPortgroup -Name "DPortGroup-Trunk-For-Migration").key
+data_network_ids=dvportgroup-6938
+form_factor=SMALL
 cli_username=admin
-root_password=supersecret
-cli_password=adminpass
-hostname=edgenode1.local
-search_domains=domain.local
-ntp_servers=ntp1.local,ntp2.local
-dns_servers=8.8.8.8,8.8.4.4
-ip_addresses=192.168.0.10
+root_password=password
+cli_password=password
+
+# Impostazioni del nodo
+hostname=EdgeNode1-test
+*search_domains=dcloud.local
+*ntp_servers=10.111.1.9,10.111.1.10
+*dns_servers=10.111.1.9,10.111.1.10
